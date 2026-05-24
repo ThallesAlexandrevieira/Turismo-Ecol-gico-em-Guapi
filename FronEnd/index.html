@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo Ecológico em Guapimirim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Turismo Ecológico em Guapimirim</h1>
+        <p>Descubra a natureza exuberante da Serra dos Órgãos</p>
+    </header>
+
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Trilhas</a>
+        <a href="#">Cachoeiras</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Bem-vindo</h2>
+            <p>Guapimirim é um destino perfeito para quem busca contato direto com a natureza. 
+            Localizada na região serrana do Rio de Janeiro, a cidade abriga parte do Parque Nacional da Serra dos Órgãos, 
+            com paisagens deslumbrantes e biodiversidade única.</p>
+        </section>
+
+        <section>
+            <h2>Trilhas Ecológicas</h2>
+            <p>Explore trilhas que levam a miradouros incríveis e áreas de mata atlântica preservada. 
+            Caminhadas ideais para quem gosta de aventura e observação da fauna e flora.</p>
+        </section>
+
+        <section>
+            <h2>Cachoeiras</h2>
+            <p>Guapimirim é conhecida por suas cachoeiras cristalinas, perfeitas para banho e contemplação. 
+            Um convite para relaxar em meio ao verde e à água pura da serra.</p>
+        </section>
+
+        <!-- Formulário de contato -->
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <form id="form-contato">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Turismo Ecológico - Guapimirim</p>
+    </footer>
+
+    <!-- Script para integração com o back end -->
+    <script>
+    document.getElementById("form-contato").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+        const mensagem = document.getElementById("mensagem").value;
+
+        try {
+            const resposta = await fetch("https://seu-backend.onrender.com/contato", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, email, mensagem })
+            });
+
+            const dados = await resposta.json();
+            alert(dados.mensagem);
+        } catch (erro) {
+            alert("Erro ao enviar contato. Tente novamente.");
+            console.error(erro);
+        }
+    });
+    </script>
+</body>
+</html>
