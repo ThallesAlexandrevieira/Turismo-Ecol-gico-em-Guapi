@@ -1,0 +1,44 @@
+Documento de Requisitos – Descubra Guapi
+
+1. Introdução
+Este documento descreve os requisitos funcionais e não funcionais do sistema **Descubra Guapi – API de Turismo Ecológico**, desenvolvido como MVP acadêmico na Unifeso.  
+O objetivo é apoiar o turismo sustentável em Guapimirim, permitindo que usuários descubram, avaliem e interajam com pontos turísticos locais.
+
+
+2. Requisitos Funcionais
+
+Gestão de Pontos Turísticos
+- RF01 – Cadastrar pontos turísticos (trilhas, cachoeiras, mirantes, campings).  
+- RF02 – Listar todos os pontos turísticos disponíveis.  
+- RF03 – Consultar detalhes de um ponto turístico específico.  
+- RF04 – Atualizar informações de um ponto turístico.  
+- RF05 – Remover pontos turísticos do sistema.  
+
+Gestão de Usuários
+- RF06 – Cadastrar usuários.  
+- RF07 – Listar usuários cadastrados.  
+- RF08 – Consultar dados de um usuário específico.  
+- RF09– Atualizar dados de usuários.  
+- RF10 – Remover usuários.  
+
+Gestão de Avaliações
+- RF11 – Cadastrar avaliações (nota e comentário) sobre pontos turísticos.  
+- RF12 – Listar todas as avaliações de um ponto turístico.  
+- RF13 – Consultar uma avaliação específica.  
+- RF14 – Atualizar avaliações feitas por usuários.  
+- RF15 – Remover avaliações.  
+
+
+3. Requisitos Não Funcionais
+- RNF01 – O sistema deve ser desenvolvido em **Java**.  
+- RNF02 – O sistema deve utilizar **Maven** para gerenciamento de dependências e build.  
+- RNF03 – O sistema deve disponibilizar uma **API REST** com rotas claras para cada entidade.  
+- RNF04 – O sistema deve ser modularizado em entidades (Usuário, Ponto Turístico, Avaliação).  
+- RNF05 – O sistema deve ser documentado com README explicando objetivo e entidades.  
+- RNF06 – O sistema deve permitir execução local via Maven (`mvn spring-boot:run`).  
+- RNF07 – O sistema deve seguir boas práticas de organização de código (pacotes, classes, controllers).  
+- RNF08 – O sistema deve ser escalável para incluir novos tipos de pontos turísticos ou funcionalidades.  
+
+
+4. Considerações Finais
+Este documento serve como base para evolução do projeto. Novos requisitos poderão ser adicionados conforme o sistema amadurece e novas necessidades surgirem.
