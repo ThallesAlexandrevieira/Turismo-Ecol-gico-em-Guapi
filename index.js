@@ -1,6 +1,5 @@
 // index.js
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const { Pool } = require("pg");
 
@@ -15,12 +14,16 @@ const pool = new Pool({
 
 // Middlewares
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Rota para receber o formulário
 app.post("/contato", async (req, res) => {
   const { nome, email, mensagem } = req.body;
+
+  if (!nome || !email || !mensagem) {
+    return res.status(400).json({ sucesso: false, mensagem: "Todos os campos são obrigatórios." });
+  }
 
   try {
     await pool.query(
@@ -29,7 +32,7 @@ app.post("/contato", async (req, res) => {
     );
     res.json({ sucesso: true, mensagem: "Contato salvo com sucesso!" });
   } catch (err) {
-    console.error(err);
+    console.error("Erro ao salvar contato:", err);
     res.status(500).json({ sucesso: false, mensagem: "Erro ao salvar contato." });
   }
 });
@@ -40,7 +43,7 @@ app.get("/contatos", async (req, res) => {
     const result = await pool.query("SELECT * FROM contatos ORDER BY id DESC");
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
+    console.error("Erro ao buscar contatos:", err);
     res.status(500).json({ sucesso: false, mensagem: "Erro ao buscar contatos." });
   }
 });
