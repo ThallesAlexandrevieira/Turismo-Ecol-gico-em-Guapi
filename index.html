@@ -71,7 +71,7 @@
         const mensagem = document.getElementById("mensagem").value;
 
         try {
-            const resposta = await fetch("http://localhost:3000/contato", {
+            const resposta = await fetch("https://turismo-ecol-gico-em-guapi.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ nome, email, mensagem })
