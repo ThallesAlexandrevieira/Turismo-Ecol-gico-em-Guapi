@@ -1,54 +1,42 @@
-// index.js
 const express = require("express");
+const nodemailer = require("nodemailer");
+const bodyParser = require("body-parser");
 const cors = require("cors");
-const { Pool } = require("pg");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Configuração do banco (Render fornece a DATABASE_URL)
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
-
-// Middlewares
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// Rota para receber o formulário
-app.post("/contato", async (req, res) => {
+// Rota para receber os dados do formulário
+app.post("/send", async (req, res) => {
   const { nome, email, mensagem } = req.body;
 
-  if (!nome || !email || !mensagem) {
-    return res.status(400).json({ sucesso: false, mensagem: "Todos os campos são obrigatórios." });
-  }
-
   try {
-    await pool.query(
-      "INSERT INTO contatos (nome, email, mensagem) VALUES ($1, $2, $3)",
-      [nome, email, mensagem]
-    );
-    res.json({ sucesso: true, mensagem: "Contato salvo com sucesso!" });
-  } catch (err) {
-    console.error("Erro ao salvar contato:", err);
-    res.status(500).json({ sucesso: false, mensagem: "Erro ao salvar contato." });
+    // Configuração do transporte de e-mail
+    const transporter = nodemailer.createTransport({
+      service: "gmail", // pode usar outro serviço
+      auth: {
+        user: process.env.EMAIL_USER, // seu e-mail
+        pass: process.env.EMAIL_PASS  // sua senha ou app password
+      }
+    });
+
+    // Configuração da mensagem
+    const mailOptions = {
+      from: email,
+      to: process.env.EMAIL_USER, // seu e-mail para receber
+      subject: `Contato do site - ${nome}`,
+      text: mensagem
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.json({ mensagem: "Mensagem enviada com sucesso!" });
+  } catch (erro) {
+    console.error(erro);
+    res.status(500).json({ mensagem: "Erro ao enviar mensagem." });
   }
 });
 
-// Rota para listar contatos (admin)
-app.get("/contatos", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT * FROM contatos ORDER BY id DESC");
-    res.json(result.rows);
-  } catch (err) {
-    console.error("Erro ao buscar contatos:", err);
-    res.status(500).json({ sucesso: false, mensagem: "Erro ao buscar contatos." });
-  }
-});
-
-// Inicializa o servidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(3000, () => {
+  console.log("Servidor rodando na porta 3000");
 });
