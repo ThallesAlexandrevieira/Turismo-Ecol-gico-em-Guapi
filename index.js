@@ -14,17 +14,17 @@ app.post("/send", async (req, res) => {
   try {
     // Configuração do transporte de e-mail
     const transporter = nodemailer.createTransport({
-      service: "gmail", // pode usar outro serviço
+      service: "gmail", // pode usar outro serviço se preferir
       auth: {
-        user: process.env.EMAIL_USER, // seu e-mail
-        pass: process.env.EMAIL_PASS  // sua senha ou app password
+        user: "tavc02@gmail.com", // e-mail que vai RECEBER as mensagens
+        pass: process.env.EMAIL_PASS // senha ou app password do Gmail
       }
     });
 
     // Configuração da mensagem
     const mailOptions = {
-      from: email,
-      to: process.env.EMAIL_USER, // seu e-mail para receber
+      from: email, // e-mail da pessoa que preencheu o formulário
+      to: "tavc02@gmail.com", // e-mail que vai receber
       subject: `Contato do site - ${nome}`,
       text: mensagem
     };
