@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Cabeçalho -->
     <header>
         <h1>Turismo Ecológico em Guapimirim</h1>
         <p>Descubra a natureza exuberante da Serra dos Órgãos</p>
     </header>
 
+    <!-- Navegação -->
     <nav>
         <a href="#">Início</a>
         <a href="#">Trilhas</a>
@@ -19,6 +21,7 @@
         <a href="#contato">Contato</a>
     </nav>
 
+    <!-- Conteúdo principal -->
     <main>
         <section>
             <h2>Bem-vindo</h2>
@@ -57,6 +60,7 @@
         </section>
     </main>
 
+    <!-- Rodapé -->
     <footer>
         <p>&copy; 2025 Turismo Ecológico - Guapimirim</p>
     </footer>
@@ -71,7 +75,7 @@
         const mensagem = document.getElementById("mensagem").value;
 
         try {
-            const resposta = await fetch("https://turismo-ecol-gico-em-guapi.onrender.com", {
+            const resposta = await fetch("http://localhost:3000/send", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ nome, email, mensagem })
