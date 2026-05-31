@@ -22,7 +22,7 @@ CSS3 → Estilização e design responsivo
 
 🚀 Como Executar Clone este repositório:
 
-bash git clone https://github.com/ThallesAlexandrevieira/Turismo-Ecol-gico-em-Guapimirim.git Acesse a pasta do projeto:
+bash git clone https://github.com/ThallesAlexandrevieira/Turismo-Ecol-gico-em-Guapi Acesse a pasta do projeto:
 
 bash cd Turismo-Ecol-gico-em-Guapimirim Abra o arquivo index.html em qualquer navegador.
 
