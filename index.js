@@ -13,7 +13,7 @@ const pool = mysql.createPool({
   host: "127.0.0.1",   // Hostname do Workbench
   port: 3306,          // Porta padrão do MySQL
   user: "root",        // Usuário do Workbench
-  password: "SUA_SENHA_AQUI", // Senha do usuário root
+  password: "1234", // Senha do usuário root
   database: "turismo"  // Nome do banco que você criou
 });
 
