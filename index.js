@@ -40,3 +40,51 @@ app.post("/send", async (req, res) => {
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
+
+
+
+const mysql = require("mysql2/promise");
+
+// Criar pool de conexões
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",        // seu usuário MySQL
+  password: "senha123", // sua senha MySQL
+  database: "turismo"
+});
+app.post("/send", async (req, res) => {
+  const { nome, email, mensagem } = req.body;
+
+  try {
+    // Salvar no banco
+    const conn = await pool.getConnection();
+    await conn.query(
+      "INSERT INTO contatos (nome, email, mensagem) VALUES (?, ?, ?)",
+      [nome, email, mensagem]
+    );
+    conn.release();
+
+    // Enviar e-mail
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "tavc02@gmail.com",
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    const mailOptions = {
+      from: email,
+      to: "tavc02@gmail.com",
+      subject: `Contato do site - ${nome}`,
+      text: mensagem
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.json({ mensagem: "Mensagem enviada e salva com sucesso!" });
+  } catch (erro) {
+    console.error(erro);
+    res.status(500).json({ mensagem: "Erro ao enviar/salvar mensagem." });
+  }
+});
