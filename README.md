@@ -29,37 +29,7 @@ CSS3 → Estilização e design responsivo
 
 JavaScript → Funcionalidades básicas
 
-🚀 Como Executar
-Clone este repositório:
 
-bash
-git clone https://github.com/ThallesAlexandrevieira/Turismo-Ecol-gico-em-Guapi
-Acesse a pasta do projeto:
-
-bash
-cd Turismo-Ecol-gico-em-Guapimirim
-Abra o arquivo index.html em qualquer navegador.
-
-📌 Próximos Passos
-Adicionar imagens dos pontos turísticos
-
-Criar versão responsiva para dispositivos móveis
-
-Integrar mapas interativos (Google Maps ou OpenStreetMap)
-
-Expandir conteúdo com informações históricas e culturais da região
-
-🤝 Contribuição
-Contribuições são bem-vindas!
-Para colaborar:
-
-Faça um fork do projeto
-
-Crie uma nova branch (git checkout -b minha-feature)
-
-Realize suas alterações
-
-Envie um pull request
 
 📜 Licença
 Este projeto está sob a licença MIT.
